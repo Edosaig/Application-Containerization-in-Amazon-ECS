@@ -1,0 +1,13 @@
+chmod 400 linux.pem                                      #Make keypair executable
+
+ssh -i linux.pem ec2-user@ip                             #ssh
+
+yum install httpd -y                                     #install webserver
+
+yum install docker -y                                    # Install docker
+
+usermod -aG docker ec2-user                              # Add user to root directory
+
+docker build -t myimage .                                # Build docker image
+
+docker run -d -p 8080:80 --name mycontainer myimage      # Run docker container 
